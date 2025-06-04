@@ -1,0 +1,199 @@
+/* src/components/Header/Header.module.css */
+.siteHeader {
+  background-color: transparent;
+  padding: 0.5rem 0; /* Padding vertical para el header */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%; /* El header en sí ocupa todo el ancho */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  height: var(--header-height-mobile);
+}
+
+.siteHeader.scrolled {
+  background-color: rgba(16,16,16,0.6); /* Fondo más oscuro y con más opacidad al hacer scroll */
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-light);
+}
+
+/* NUEVO: Contenedor para el contenido del header, ocupa todo el ancho con padding */
+.headerContentWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1.5rem;  /* Padding lateral para que el contenido no pegue a los bordes */
+  padding-right: 1.5rem; /* Ajusta este valor según necesites */
+  margin: 0 auto; /* Esto no centrará si width es 100% y no hay max-width */
+  /* No establecemos max-width para que use todo el ancho disponible */
+}
+
+.logo {
+  /* ANTES: font-size: 1.6rem; */
+  font-size: 1.8rem; /* Letra del logo más grande */
+  font-weight: 800; /* Un poco más de peso */
+  color: var(--color-beige-light);
+  text-decoration: none;
+}
+
+.mainNav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* Espacio entre elementos de navegación en desktop */
+}
+
+.mainNav a {
+  color: var(--color-beige-medium);
+  text-decoration: none;
+  font-weight: 500;
+  /* ANTES: font-size: var(--step--1); */
+  font-size: var(--step-0); /* Letras de navegación más grandes (1.13rem a 1.25rem) */
+  transition: color 0.3s ease;
+}
+
+.mainNav a:hover,
+.mainNav a.activeLink {
+  color: var(--color-beige-light);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espacio entre el ícono de usuario y el menú hamburguesa */
+}
+
+.userButton {
+  background: none;
+  border: 1px solid var(--color-beige-medium);
+  color: var(--color-beige-medium);
+  border-radius: 50%;
+  width: 40px;   /* Tamaño del botón de usuario */
+  height: 40px;  /* Tamaño del botón de usuario */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.userButton:hover {
+  background-color: var(--color-beige-medium);
+  color: var(--color-dark-primary);
+}
+
+.mobileMenuToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-beige-light);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1002; 
+}
+
+.hamburgerIcon {
+  width: 26px; /* Icono hamburguesa un poco más grande */
+  height: 20px; 
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburgerIcon span {
+  display: block;
+  width: 100%;
+  height: 2.5px; /* Líneas un poco más gruesas */
+  background-color: var(--color-beige-light);
+  border-radius: 1px;
+  transition: all 0.3s ease-in-out;
+}
+
+.mobileMenuToggle.active .hamburgerIcon span:nth-child(1) {
+  transform: translateY(8.75px) rotate(45deg); /* Ajuste fino para el centro */
+}
+.mobileMenuToggle.active .hamburgerIcon span:nth-child(2) {
+  opacity: 0;
+}
+.mobileMenuToggle.active .hamburgerIcon span:nth-child(3) {
+  transform: translateY(-8.75px) rotate(-45deg); /* Ajuste fino para el centro */
+}
+
+/* Media Query para móvil */
+@media (max-width: 768px) {
+  .siteHeader {
+    height: var(--header-height-mobile);
+  }
+  .headerContentWrapper {
+    padding-left: 1rem; /* Menos padding en móviles si es necesario */
+    padding-right: 1rem;
+  }
+  .logo {
+    font-size: 1.5rem; /* Ajuste del logo para móviles */
+  }
+  .mainNav {
+    display: none;
+    position: absolute;
+    top: var(--header-height-mobile);
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--color-dark-secondary);
+    padding: 1rem 0;
+    box-shadow: var(--shadow-medium);
+    border-bottom-left-radius: var(--border-radius-medium);
+    border-bottom-right-radius: var(--border-radius-medium);
+  }
+
+  .mainNav.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mainNav ul {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+  }
+
+  .mainNav li {
+    width: 100%;
+  }
+
+  .mainNav a {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(234, 224, 213, 0.1);
+    width: 100%;
+    font-size: var(--step-0); /* Mantener tamaño o ajustar para móvil */
+  }
+  .mainNav li:last-child a {
+    border-bottom: none;
+  }
+
+  .mobileMenuToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+   .userButton { /* Hacer el botón de usuario un poco más pequeño en móvil si es necesario */
+    width: 36px;
+    height: 36px;
+  }
+  .userButton svg {
+    width: 18px; /* Icono dentro del botón más pequeño */
+    height: 18px;
+  }
+}
+
+@media (min-width: 769px) {
+  .siteHeader {
+    height: var(--header-height-desktop);
+  }
+   .mainNav a { /* Para asegurar que en desktop se use el tamaño de step-0 */
+    font-size: var(--step-0);
+  }
+}

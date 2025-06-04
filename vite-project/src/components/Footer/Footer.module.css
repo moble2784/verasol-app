@@ -1,0 +1,11 @@
+/* src/components/Footer/Footer.module.css */
+.siteFooter {
+  background-color: rgba(0,0,0,0.2);
+  padding: 2rem 0; /* Aumentado el padding */
+  color: var(--color-beige-medium);
+  font-size: var(--step--1);
+}
+
+.textCenter {
+  text-align: center;
+}

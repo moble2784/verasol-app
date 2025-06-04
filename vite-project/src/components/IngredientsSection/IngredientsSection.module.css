@@ -1,0 +1,79 @@
+/* src/components/IngredientsSection/IngredientsSection.module.css */
+.ingredientsSection {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  /* ANTES: background-color: rgba(0,0,0, 0.12); */
+  /* NUEVO: Fondo con degradado oscuro. 
+     Este es un degradado que actúa como un overlay sobre el fondo general de la página.
+     Comienza con una transparencia de --color-dark-primary y se va a una transparencia de --color-dark-secondary.
+     Ajusta los valores de alfa (ej. / 0.6 , / 0.4) para controlar la oscuridad.
+  */
+  background: linear-gradient(to bottom, 
+    rgb(var(--color-dark-primary-rgb) / 0.65), /* Más oscuro arriba */
+    rgb(var(--color-dark-secondary-rgb) / 0.45) /* Un poco menos oscuro abajo */
+  );
+  /* Si prefieres un degradado oscuro más sólido e independiente: */
+  /* background: linear-gradient(180deg, var(--color-dark-primary) 0%, var(--color-dark-secondary) 100%); */
+}
+
+.sectionTitle {
+  font-size: var(--step-3);
+  font-weight: 700;
+  color: var(--color-beige-light);
+  margin-bottom: 1rem;
+  text-align: center;
+  text-transform: uppercase; /* NUEVO: Título en mayúsculas */
+}
+
+.sectionIntro {
+  font-size: var(--step-0);
+  color: var(--color-beige-medium);
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+  line-height: 1.6; /* Ajustado para mejor legibilidad */
+}
+
+.ingredientsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.ingredientCard {
+  background: linear-gradient(145deg, rgb(var(--color-dark-primary-rgb) / 0.6), rgb(var(--color-dark-secondary-rgb) / 0.5)); /* Ajustado para contrastar con el nuevo fondo de sección */
+  /* ANTES: background: linear-gradient(145deg, rgba(30, 30, 30, 0.5), rgba(45, 45, 45, 0.4)); */
+  border: 1px solid rgb(var(--color-beige-medium-rgb) / 0.2); /* Borde un poco más sutil */
+  border-radius: var(--border-radius-medium);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredientCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-light);
+  background: linear-gradient(145deg, rgb(var(--color-dark-primary-rgb) / 0.7), rgb(var(--color-dark-secondary-rgb) / 0.6));
+}
+
+.cardContent h3 {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--color-beige-light);
+  margin: 0;
+}
+
+@media (min-width: 769px) {
+  .ingredientsSection {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+   .ingredientsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+}

@@ -1,0 +1,107 @@
+/* src/components/HeroSection/HeroSection.module.css */
+.heroSection {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  min-height: calc(85vh - var(--header-height-desktop)); /* Ajusta la altura */
+  display: flex;
+  align-items: center;
+  color: var(--color-beige-light);
+}
+
+.heroLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem; /* Aumentado para más espacio */
+  align-items: center;
+}
+
+.heroTextContent {
+  order: 2; /* Por defecto texto abajo en móvil */
+  text-align: center; /* Centrado en móvil */
+}
+
+.heroTitle {
+  font-size: var(--step-4);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--color-beige-light);
+}
+
+.highlightText {
+  color: var(--color-white); /* O un color de acento más brillante */
+  display: block; /* Para que "VERASOL" esté en su propia línea si es necesario */
+}
+
+.heroSubtitle {
+  font-size: var(--step-0);
+  color: var(--color-beige-medium);
+  margin-bottom: 2.5rem;
+  max-width: 550px;
+  margin-left: auto; /* Centra si el texto es más corto */
+  margin-right: auto; /* Centra si el texto es más corto */
+}
+
+.heroImageContainer {
+  order: 1; /* Imagen arriba en móvil */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImageContainer img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-medium);
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: var(--color-beige-light);
+  color: var(--color-dark-primary);
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--border-radius-small);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--step--1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: var(--shadow-light);
+}
+
+.ctaButton:hover {
+  background-color: var(--color-white);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+  text-decoration: none;
+}
+
+@media (min-width: 769px) {
+  .heroSection {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    min-height: calc(90vh - var(--header-height-desktop));
+  }
+  .heroLayout {
+    grid-template-columns: minmax(auto, 55%) 1fr; /* Ajuste para más control del texto */
+    gap: 4rem;
+    text-align: left;
+  }
+  .heroTextContent {
+    order: 1;
+  }
+   .heroSubtitle {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .heroImageContainer {
+    order: 2;
+  }
+  .heroImageContainer img {
+    max-width: 450px;
+  }
+  .highlightText {
+    display: inline; /* Para que esté en la misma línea en desktop */
+  }
+}
