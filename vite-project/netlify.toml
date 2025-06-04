@@ -1,8 +1,9 @@
 [build]
-  command = "npm run build" # O "yarn build" si usas yarn
-  publish = "dist"
+  base    = "vite-project"      # Indica a Netlify que tu proyecto está en la subcarpeta "vite-project"
+  command = "npm run build"     # O "yarn build" si usas yarn. Este comando se ejecutará DENTRO de "vite-project"
+  publish = "vite-project/dist" # La carpeta a publicar, relativa a la RAÍZ de tu repositorio (VERASOL-APP)
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/index.html" # Esto buscará index.html en la raíz de tu directorio de publicación (o sea, en vite-project/dist/index.html)
   status = 200
