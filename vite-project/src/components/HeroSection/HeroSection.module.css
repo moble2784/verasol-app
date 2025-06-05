@@ -2,7 +2,7 @@
 .heroSection {
   padding-top: 4rem;
   padding-bottom: 4rem;
-  min-height: calc(85vh - var(--header-height-desktop)); /* Ajusta la altura */
+  min-height: calc(80vh - var(--header-height-desktop)); 
   display: flex;
   align-items: center;
   color: var(--color-beige-light);
@@ -11,13 +11,13 @@
 .heroLayout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem; /* Aumentado para más espacio */
+  gap: 2rem; 
   align-items: center;
 }
 
 .heroTextContent {
-  order: 2; /* Por defecto texto abajo en móvil */
-  text-align: center; /* Centrado en móvil */
+  order: 2; 
+  text-align: center; 
 }
 
 .heroTitle {
@@ -29,8 +29,8 @@
 }
 
 .highlightText {
-  color: var(--color-white); /* O un color de acento más brillante */
-  display: block; /* Para que "VERASOL" esté en su propia línea si es necesario */
+  color: var(--color-white); 
+  display: block; 
 }
 
 .heroSubtitle {
@@ -38,70 +38,115 @@
   color: var(--color-beige-medium);
   margin-bottom: 2.5rem;
   max-width: 550px;
-  margin-left: auto; /* Centra si el texto es más corto */
-  margin-right: auto; /* Centra si el texto es más corto */
+  margin-left: auto; 
+  margin-right: auto; 
 }
 
 .heroImageContainer {
-  order: 1; /* Imagen arriba en móvil */
+  order: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
+  /* Añadimos perspectiva para posibles efectos 3D sutiles si se quisieran en el futuro */
+  /* perspective: 1000px; */ 
 }
 
 .heroImageContainer img {
   width: 100%;
-  max-width: 400px;
+  /* TAMAÑO POR DEFECTO Y PARA MÓVILES MÁS PEQUEÑOS */
+  /* ANTES: max-width: 280px; */
+  max-width: 260px; /* EJEMPLO: Reducción adicional. Ajusta este valor. */
   height: auto;
-  border-radius: var(--border-radius-medium);
-  box-shadow: var(--shadow-medium);
+  display: block;
+  margin: 0 auto; 
+  border-radius: var(--border-radius-medium); /* Mantenemos el borde redondeado de la imagen */
+  
+  /* EFECTO DE "HUMO" O RESPLANDOR DIFUMINADO EN EL BORDE */
+  /* Usamos múltiples box-shadows para un efecto más suave y difuso */
+  /* El color del humo podría ser un beige muy claro o un gris claro, o un blanco translúcido */
+  /* El primer valor es el desplazamiento X, el segundo Y, el tercero el blur, el cuarto el spread, y luego el color */
+  box-shadow: 
+    0 0 15px 5px rgb(var(--color-beige-light-rgb) / 0.2), /* Resplandor base más amplio y sutil */
+    0 0 8px 2px rgb(var(--color-beige-light-rgb) / 0.25), /* Resplandor interior un poco más definido */
+    var(--shadow-medium); /* Mantenemos la sombra base que ya teníamos para profundidad */
+
+  /* Transición para suavizar el cambio si hay efectos hover en el futuro */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Si quisieras un efecto hover sutil en la imagen: */
+/*
+.heroImageContainer img:hover {
+  transform: scale(1.03);
+  box-shadow: 
+    0 0 25px 8px rgb(var(--color-beige-light-rgb) / 0.25),
+    0 0 12px 4px rgb(var(--color-beige-light-rgb) / 0.3),
+    var(--shadow-medium);
+}
+*/
 
 .ctaButton {
   display: inline-block;
   background-color: var(--color-beige-light);
   color: var(--color-dark-primary);
-  padding: 0.9rem 2.2rem;
+  padding: 0.65rem 1.7rem; 
+  font-size: 0.9rem;      
   border-radius: var(--border-radius-small);
   text-decoration: none;
-  font-weight: 600;
-  font-size: var(--step--1);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600; 
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
   box-shadow: var(--shadow-light);
+  text-align: center; 
+  line-height: 1.4; 
 }
 
 .ctaButton:hover {
   background-color: var(--color-white);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px); 
+  box-shadow: var(--shadow-medium); 
   text-decoration: none;
 }
 
+/* ESTILOS PARA DESKTOP Y PANTALLAS MÁS GRANDES */
 @media (min-width: 769px) {
   .heroSection {
     padding-top: 5rem;
     padding-bottom: 5rem;
-    min-height: calc(90vh - var(--header-height-desktop));
+    min-height: calc(85vh - var(--header-height-desktop));
   }
   .heroLayout {
-    grid-template-columns: minmax(auto, 55%) 1fr; /* Ajuste para más control del texto */
-    gap: 4rem;
-    text-align: left;
+    grid-template-columns: minmax(auto, 55%) 1fr; 
+    gap: 3rem; 
+    text-align: left; 
   }
   .heroTextContent {
-    order: 1;
+    order: 1; 
   }
    .heroSubtitle {
-    margin-left: 0;
+    margin-left: 0; 
     margin-right: 0;
   }
   .heroImageContainer {
-    order: 2;
+    order: 2; 
+    justify-content: flex-end; 
   }
   .heroImageContainer img {
-    max-width: 450px;
+    /* TAMAÑO DE LA IMAGEN PARA DESKTOP */
+    /* ANTES: max-width: 360px; */
+    max-width: 330px; /* EJEMPLO: Reducción adicional en desktop. Ajusta este valor. */
+                     /* Si la quieres aún más pequeña: ej. 300px */
   }
   .highlightText {
-    display: inline; /* Para que esté en la misma línea en desktop */
+    display: inline; 
   }
+}
+
+/* Ajuste adicional para pantallas muy anchas si es necesario */
+@media (min-width: 1200px) {
+    .heroImageContainer img {
+        /* max-width: 350px; */ /* Podrías ajustarlo un poco más aquí si quieres */
+    }
+    .heroLayout {
+        gap: 4rem; 
+    }
 }
